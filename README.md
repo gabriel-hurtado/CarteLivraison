@@ -36,3 +36,13 @@ _TODO:_
     * Pouvoir ajouter de nouveaux clients
 
     * Pouvoir mettre à jour les informations d'accessibilité des routes
+
+* Interface WEB :
+
+Fenêtre découpée en 2 frames :
+* Frame 1 : Main content à droite (80%)
+* Frame 2 : Menu à gauche (20%) 
+	* Gestion des clients (Tout les clients, add/supp clients, clients en attente, etc...
+	* Gestion des marchandises (Toutes les marchandises, rupture de stock, Réapprovisionnement ...)
+	* Gestion des commandes
+
