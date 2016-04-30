@@ -3,16 +3,16 @@
 _TODO:_
 
 * Créer les tables
-	* Client
-	* Disponibilité
+	* ~~Client~~
+	* ~~Disponibilité~~
 	* Demande
-	* Adresse
-	* Commande
-	* Marchandise
-	* MarchandiseCommande
-	* Route
-	* Jonction
-	* JontionRoutes
+	* ~~Adresse~~
+	* ~~Commande~~
+	*~~Marchandise~~
+	* ~~MarchandiseCommande~~
+	* ~~Route~~
+	* ~~Jonction~~
+	* ~~JontionRoutes~~
 
 * Traduire en requete SQL : 
     * Quels sont les clients en attente de livraison ?
