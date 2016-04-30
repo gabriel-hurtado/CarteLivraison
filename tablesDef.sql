@@ -50,3 +50,28 @@ CREATE TABLE proDisponibilite(
 	client INTEGER REFERENCES proClients(numero_client),
 	PRIMARY KEY (debut, dureeH, client)
 );
+
+CREATE TABLE proMarchandise(
+	id SERIAL PRIMARY KEY,
+	denomination VARCHAR NOT NULL,
+	prix INTEGER NOT NULL,
+	stock INTEGER NOT NULL,
+	delai_reapprovisionnement  TIMESTAMP, 
+);
+
+CREATE TABLE proCommande(
+	id SERIAL PRIMARY KEY, 
+	livree BOOLEAN NOT NULL, 
+	date_livraison TIMESTAMP NOT NULL, 
+	date_commande TIMESTAMP NOT NULL, 
+	enquete_satisfaction_envoyee BOOLEAN NOT NULL, 
+	reponse_enquete_satisfaction VARCHAR, 
+	numero_client INTEGER REFERENCES proClients(numero_client),
+); 
+--Projection(Commande, id) inclus ou egal a Projection(Marchandise_Commande, commande_id)
+
+CREATE TABLE proMarchandiseCommande(
+	numero_id INTEGER REFERENCES proMarchandise(id), 
+	commande_id INTEGER REFERENCES proCommande(id),
+	PRIMARY KEY (numero_id, commande_id),
+);
