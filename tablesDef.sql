@@ -38,7 +38,7 @@ CREATE TABLE proClients(
 	numero_client SERIAL PRIMARY KEY,
 	prenom VARCHAR(25) NOT NULL,
 	nom VARCHAR(25) NOT NULL,
-	telephone INTEGER(10),
+	telephone INTEGER,
 	email VARCHAR(50) UNIQUE NOT NULL,
 	route_nom VARCHAR(50) REFERENCES proAdresse(route_nom) NOT NULL,
 	numero_rue INTEGER REFERENCES proAdresse(numero_rue) NOT NULL
@@ -56,22 +56,22 @@ CREATE TABLE proMarchandise(
 	denomination VARCHAR NOT NULL,
 	prix INTEGER NOT NULL,
 	stock INTEGER NOT NULL,
-	delai_reapprovisionnement  TIMESTAMP, 
+	delai_reapprovisionnement  TIMESTAMP,
 );
 
 CREATE TABLE proCommande(
-	id SERIAL PRIMARY KEY, 
-	livree BOOLEAN NOT NULL, 
-	date_livraison TIMESTAMP NOT NULL, 
-	date_commande TIMESTAMP NOT NULL, 
-	enquete_satisfaction_envoyee BOOLEAN NOT NULL, 
-	reponse_enquete_satisfaction VARCHAR, 
+	id SERIAL PRIMARY KEY,
+	livree BOOLEAN NOT NULL,
+	date_livraison TIMESTAMP NOT NULL,
+	date_commande TIMESTAMP NOT NULL,
+	enquete_satisfaction_envoyee BOOLEAN NOT NULL,
+	reponse_enquete_satisfaction VARCHAR,
 	numero_client INTEGER REFERENCES proClients(numero_client),
-); 
+);
 --Projection(Commande, id) inclus ou egal a Projection(Marchandise_Commande, commande_id)
 
 CREATE TABLE proMarchandiseCommande(
-	numero_id INTEGER REFERENCES proMarchandise(id), 
+	numero_id INTEGER REFERENCES proMarchandise(id),
 	commande_id INTEGER REFERENCES proCommande(id),
 	PRIMARY KEY (numero_id, commande_id),
 );
