@@ -61,11 +61,19 @@ else{
 	else{
 		$vConn = fConnect();
 		echo "Vous êtes $nom "."$prenom, habitant le $numero $typerue $nomrue";
+    //Ajout de la route si nouvelle
     $vSql1 = "INSERT INTO proRoute VALUES ('$nomrue', '$typerue', 'TRAFFIC NORMAL')";
 		$vResult1 = pg_query($vConnect, $vSql1);
-    $vSql2 = "INSERT INTO proAdresse VALUES ('$numero', '$nomrue', '$batiment', '$etage', '$digicode')";
+
+    //Ajoute de l'adresse si nouvelle
+    $vSql2 = "INSERT INTO proAdresse VALUES (NULL,'$numero', '$nomrue', '$batiment', '$etage', '$digicode')";
     $vResult2 = pg_query($vConnect, $vSql2);
-		$vSql3 = "INSERT INTO proClients VALUES (NULL, '$prenom', '$nom', '$telephone', '$email', '$nomrue', '$numero')";
+
+    //recuperation de l'id de l'adresse pour ajout du client
+    $vSqlAdresse = "SELECT id FROM proAdresse WHERE numero_rue=$numero AND route_nom = $nomrue AND batiment = $batiment AND etage = $etage AND digicode=$digicode)";
+    $idAdresse = pg_query($vConnect, $vSqlAdresse);
+    //Ajout du client
+    $vSql3 = "INSERT INTO proClients VALUES (NULL, '$prenom', '$nom', '$telephone', '$email', '$idAdresse')";
 		$vResult3 = pg_query($vConnect, $vSql3);
 		if (!$vResult1 || !$vResult2 || !$vResult3) { echo "<br> pas bon ".pg_error($vConnect);}
 		else{echo"le client a bien été ajouté !";}
