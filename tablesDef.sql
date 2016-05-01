@@ -2,7 +2,8 @@
 -- ATTENTION: METTRE "pro" EN PREFIXE DE TABLE POUR SAVOIR QUE C EST UNE TABLE DE PROJET
 -- Exemple :
 
--- CREATE TABLE proClients ( ........ );
+-- LISTER LES TABLES :
+-- select * from pg_tables where tablename not like 'pg_%' AND tableowner='nf17p072';
 
 CREATE TABLE proRoute(
 	route_nom VARCHAR(50) PRIMARY KEY,
@@ -55,7 +56,7 @@ CREATE TABLE proMarchandise(
 	denomination VARCHAR NOT NULL,
 	prix INTEGER NOT NULL,
 	stock INTEGER NOT NULL,
-	delai_reapprovisionnement  TIMESTAMP,
+	delai_reapprovisionnement DATE
 );
 
 CREATE TABLE proCommande(
@@ -65,12 +66,12 @@ CREATE TABLE proCommande(
 	date_commande TIMESTAMP NOT NULL,
 	enquete_satisfaction_envoyee BOOLEAN NOT NULL,
 	reponse_enquete_satisfaction VARCHAR,
-	numero_client INTEGER REFERENCES proClients(numero_client),
+	numero_client INTEGER REFERENCES proClients(numero_client)
 );
 --Projection(Commande, id) inclus ou egal a Projection(Marchandise_Commande, commande_id)
 
 CREATE TABLE proMarchandiseCommande(
 	numero_id INTEGER REFERENCES proMarchandise(id),
 	commande_id INTEGER REFERENCES proCommande(id),
-	PRIMARY KEY (numero_id, commande_id),
+	PRIMARY KEY (numero_id, commande_id)
 );
