@@ -15,67 +15,74 @@
 	$nomrue = $_POST['nomrue'];
 	$numero = $_POST['numero'];
   $batiment = $_POST['batiment'];
-  $etage = $_POST['etage'];
-  $digicode = $_POST['digicode'];
+  //$etage = ($_POST['etage'] =='')? -1 : $_POST['etage'];
+  	$digicode = $_POST['digicode'];
 	$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
 echo "<h2>Ajout d'un client</h2>";
 echo "<div align=center>";
 
  	/*On vérifie que le nom et le prénom ne contiennent pas de caractères spéciaux*/
-elseif (preg_match($pattern, $nom, $matches)){
+if (preg_match($pattern, $nom, $matches)){
   	echo "Le nom contient des caractères spéciaux <br>";
   	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 }
-elseif (preg_match('/[0-9]/', $nom, $matches)){
+if (preg_match('/[0-9]/', $nom, $matches)){
   	echo "Le nom contient des chiffres <br>";
   	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 }
-elseif (preg_match($pattern, $prenom, $matches)){
+if (preg_match($pattern, $prenom, $matches)){
   	echo "Le prénom contient des caractères spéciaux <br>";
   	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 }
-elseif (preg_match('/[0-9]/', $prenom, $matches)){
+if (preg_match('/[0-9]/', $prenom, $matches)){
   	echo "Le prénom contient des chiffres <br>";
   	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 }
 	/*On vérifie que le nom et le prénom ne sont pas seulement un ou des espaces*/
-elseif ((trim($nom, ' ')) == ''){
+if ((trim($nom, ' ')) == ''){
  	 echo "Vous n'avez rentré que des espaces pour le nom <br>";
 	 echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 }
-elseif ((trim($prenom, ' ')) == ''){
+if ((trim($prenom, ' ')) == ''){
   	echo "Vous n'avez rentré que des espaces pour le prénom <br>";
   	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 }
 	/*Si aucune erreur, alors on peut enregistrer dans la BDD*/
 else{
 	include "connect.php";
-  $vConn = fConnect();
+  	$vConnect = fConnect();
 	$vSql ="SELECT * from proClients where email='$email'";
-	$result =pg_query( $vConn;, $vSql);
+	$result =pg_query($vConnect, $vSql);
 	$rowCnt = pg_num_rows($result);
 	if($rowCnt == 1){
-	 echo"Client déjà enregistré !";
-	 echo "<input type='button' value='Non' onClick='history.go(-1)'>";
+	 echo"Client déjà enregistré ! <br>";
+	 echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 	}
 	else{
-		$vConn = fConnect();
+		$vConnect = fConnect();
 		echo "Vous êtes $nom "."$prenom, habitant le $numero $typerue $nomrue";
     //Ajout de la route si nouvelle
-    $vSql1 = "INSERT INTO proRoute VALUES ('$nomrue', '$typerue', 'TRAFFIC NORMAL')";
-		$vResult1 = pg_query($vConnect, $vSql1);
-
-    //Ajoute de l'adresse si nouvelle
-    $vSql2 = "INSERT INTO proAdresse VALUES (NULL,'$numero', '$nomrue', '$batiment', '$etage', '$digicode')";
-    $vResult2 = pg_query($vConnect, $vSql2);
-
+   		$vSqlCheck = "SELECT * FROM proRoute WHERE route_nom = '$nomrue'";
+		$result = pg_query($vConnect, $vSqlCheck);
+		if(pg_num_rows($result) == 0){
+			$vSql1 = "INSERT INTO proRoute(route_nom, type, accessibilite) VALUES ('$nomrue', '$typerue', 'TRAFFIC NORMAL')";
+			$vResult1 = pg_query($vConnect, $vSql1);
+		}
+    //Ajout de l'adresse si nouvelle
+    $vSqlCheck= "SELECT * FROM proAdresse WHERE numero_rue='$numero' AND route_nom='$nomrue' AND batiment ='$batiment' AND etage = '$etage' AND digicode='$digicode'";
+    $result=pg_query($vConnect, $vSqlCheck);
+    if(pg_num_rows($result) == 0){	
+    	$vSql2 = "INSERT INTO proAdresse(id, numero_rue, route_nom, batiment, etage, digicode) VALUES (DEFAULT,'$numero', '$nomrue', '$batiment', '$etage', '$digicode')";
+    	$vResult2 = pg_query($vConnect, $vSql2);
+    }
     //recuperation de l'id de l'adresse pour ajout du client
-    $vSqlAdresse = "SELECT id FROM proAdresse WHERE numero_rue=$numero AND route_nom = $nomrue AND batiment = $batiment AND etage = $etage AND digicode=$digicode)";
+    $vSqlAdresse = "SELECT id FROM proAdresse WHERE numero_rue='$numero' AND route_nom ='$nomrue' AND batiment ='$batiment' AND etage = '$etage' AND digicode='$digicode'";
     $idAdresse = pg_query($vConnect, $vSqlAdresse);
+    $adresse = pg_fetch_array($idAdresse);
     //Ajout du client
-    $vSql3 = "INSERT INTO proClients VALUES (NULL, '$prenom', '$nom', '$telephone', '$email', '$idAdresse')";
+    $vSql3 = "INSERT INTO proClients(numero_client, prenom, nom, telephone, email, adresse) VALUES (DEFAULT, '$prenom', '$nom', '$telephone', '$email', '$adresse[0]')";
 		$vResult3 = pg_query($vConnect, $vSql3);
-		if (!$vResult1 || !$vResult2 || !$vResult3) { echo "<br> pas bon ".pg_error($vConnect);}
+		if (!$vResult1 || !$vResult2 || !$vResult3) { echo "<br> pas bon ";}
 		else{echo"le client a bien été ajouté !";}
 		pg_close($vConnect);
 	}
