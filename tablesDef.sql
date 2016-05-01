@@ -14,12 +14,12 @@ CREATE TABLE proRoute(
 
 
 CREATE TABLE proAdresse(
-	numero_rue INTEGER,
-	route_nom VARCHAR(50) REFERENCES proRoute(route_nom),
+	id SERIAL PRIMARY KEY,
+	numero_rue INTEGER NOT NULL,
+	route_nom VARCHAR(50) REFERENCES proRoute(route_nom) NOT NULL,
 	batiment VARCHAR(25),
 	etage INTEGER,
-	digicode VARCHAR(15),
-	PRIMARY KEY (numero_rue, route_nom)
+	digicode VARCHAR(15)
 );
 
 CREATE TABLE proJonction(
@@ -40,8 +40,7 @@ CREATE TABLE proClients(
 	nom VARCHAR(25) NOT NULL,
 	telephone INTEGER,
 	email VARCHAR(50) UNIQUE NOT NULL,
-	route_nom VARCHAR(50) REFERENCES proAdresse(route_nom) NOT NULL,
-	numero_rue INTEGER REFERENCES proAdresse(numero_rue) NOT NULL
+	adresse INTEGER REFERENCES proAdresse(id) NOT NULL
 );
 
 CREATE TABLE proDisponibilite(
