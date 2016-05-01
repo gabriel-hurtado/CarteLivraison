@@ -19,7 +19,7 @@ CREATE TABLE proAdresse(
 	numero_rue INTEGER NOT NULL,
 	route_nom VARCHAR(50) REFERENCES proRoute(route_nom) NOT NULL,
 	batiment VARCHAR(25),
-	etage INTEGER,
+	etage INTEGER NOT NULL DEFAULT 0,
 	digicode VARCHAR(15)
 );
 
