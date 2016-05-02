@@ -10,12 +10,12 @@
 	$nom = $_POST['nom'];
 	$prenom= $_POST["prenom"];
 	$email= $_POST["email"];
-	$telephone= $_POST["telephone"];
+	$telephone= ($_POST["telephone"] == '')? 0 : $POST_['telephone'];
 	$typerue= $_POST["typerue"];
 	$nomrue = $_POST['nomrue'];
 	$numero = $_POST['numero'];
-  $batiment = $_POST['batiment'];
-  //$etage = ($_POST['etage'] =='')? -1 : $_POST['etage'];
+  	$batiment = $_POST['batiment'];
+  	$etage =($_POST['etage'] =='')? 0 : $_POST['etage'];
   	$digicode = $_POST['digicode'];
 	$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
 echo "<h2>Ajout d'un client</h2>";
