@@ -19,7 +19,7 @@ CREATE TABLE proAdresse(
 	numero_rue INTEGER NOT NULL,
 	route_nom VARCHAR(50) REFERENCES proRoute(route_nom) NOT NULL,
 	batiment VARCHAR(25),
-	etage INTEGER NOT NULL DEFAULT 0,
+	etage VARCHAR(5),
 	digicode VARCHAR(15)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE proClients(
 	numero_client SERIAL PRIMARY KEY,
 	prenom VARCHAR(25) NOT NULL,
 	nom VARCHAR(25) NOT NULL,
-	telephone INTEGER,
+	telephone VARCHAR(10),
 	email VARCHAR(50) UNIQUE NOT NULL,
 	adresse INTEGER REFERENCES proAdresse(id) NOT NULL
 );

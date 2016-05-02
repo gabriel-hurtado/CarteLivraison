@@ -10,12 +10,12 @@
 	$nom = $_POST['nom'];
 	$prenom= $_POST["prenom"];
 	$email= $_POST["email"];
-	$telephone= ($_POST["telephone"] == '')? 0 : $POST_['telephone'];
+	$telephone= $_POST["telephone"];
 	$typerue= $_POST["typerue"];
 	$nomrue = $_POST['nomrue'];
 	$numero = $_POST['numero'];
   	$batiment = $_POST['batiment'];
-  	$etage =($_POST['etage'] =='')? 0 : $_POST['etage'];
+  	$etage = $_POST['etage'];
   	$digicode = $_POST['digicode'];
 	$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
 echo "<h2>Ajout d'un client</h2>";
@@ -82,8 +82,7 @@ else{
     //Ajout du client
     $vSql3 = "INSERT INTO proClients(numero_client, prenom, nom, telephone, email, adresse) VALUES (DEFAULT, '$prenom', '$nom', '$telephone', '$email', '$adresse[0]')";
 		$vResult3 = pg_query($vConnect, $vSql3);
-		if (!$vResult1 || !$vResult2 || !$vResult3) { echo "<br> pas bon ";}
-		else{echo"le client a bien été ajouté !";}
+		echo "le client a bien été ajouté !";
 		pg_close($vConnect);
 	}
  }
