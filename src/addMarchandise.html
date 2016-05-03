@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+</head>
+
+<body>
+	<form method="POST" action="addMarchandise.php">
+
+	<h2>Ajout d'une marchandise</h2>
+	<div align="center">
+	<table>
+		<tr>
+			<td>Dénomination :</td><td><input type="text" name="denomination" maxlength="25" required> *</td><br>
+		</tr>
+		<tr>
+			<td>Prix :</td><td><input type="text" name="prix" maxlength="25" required> *</td><br>
+		</tr>
+    <tr>
+      <td>Stock :</td><td><input type="text" name="stock" maxlength="50" required> *</td><br>
+    </tr>
+    <tr>
+      <td>Délai de réapprovisionnement :</td><td><input type="date" name="delai" length="10"></td><br>
+    </tr>
+   
+	</table>
+
+	<br>
+	<br>
+	<br>
+		<input type="submit" value="Valider">
+		<input type="reset" value="Annuler">
+	</div>
+	</form>
+</body>
+
+</html>

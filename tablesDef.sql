@@ -54,7 +54,7 @@ CREATE TABLE proDisponibilite(
 CREATE TABLE proMarchandise(
 	id SERIAL PRIMARY KEY,
 	denomination VARCHAR NOT NULL,
-	prix INTEGER NOT NULL,
+	prix DECIMAL(5,2) NOT NULL,
 	stock INTEGER NOT NULL,
 	delai_reapprovisionnement DATE
 );
