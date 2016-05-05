@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+</head>
+
+<body>
+	<form method="POST" action="addRoute.php">
+
+	<h2>Nouvelle route</h2>
+	<div align="center">
+	<table>
+    <tr>
+      <td></td><td><select name="typerue" id="typerue">  <option value="">-</option>
+          <option value="RUE">RUE</option>
+          <option value="ROUTE">ROUTE</option>
+          <option value="AVENUE">AVENUE</option>
+          <option value="IMPASSE">IMPASSE</option>
+          <option value="BOULEVARD">BOULEVARD</option>
+          <option value="CHEMIN">CHEMIN</option>
+          <option value="RUELLE">RUELLE</option>*</td><br>
+    </tr>
+		<tr>
+			<td>Nom :</td><td><input type="text" name="nom" maxlength="25" required> *</td><br>
+		</tr>
+    <tr>
+      <td>Accessibilité : </td><td><select name="access" id="access">  <option value="">-</option>
+          <option value="TRAFFIC NORMAL">TRAFFIC NORMAL</option>
+          <option value="TRAVAUX">TRAVAUX</option>
+          <option value="ACCIDENT">ACCIDENT</option>*</td><br>
+    </tr>
+	</table>
+	<br>
+	<br>
+	<br>
+		<input type="submit" value="Valider">
+		<input type="reset" value="Annuler">
+	</div>
+	</form>
+</body>
+
+</html>

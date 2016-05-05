@@ -35,32 +35,32 @@
 			$AllAnswersOk = false;
 	}
 
-	if (preg_match('/[0-9]/', $nom, $matches)){
+	else if (preg_match('/[0-9]/', $nom, $matches)){
 	  	echo "Le nom contient des chiffres <br>";
 	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			$AllAnswersOk = false;
 	}
 
-	if (preg_match($pattern, $prenom, $matches)){
+	else if (preg_match($pattern, $prenom, $matches)){
 	  	echo "Le prénom contient des caractères spéciaux <br>";
 	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			$AllAnswersOk = false;
 	}
 
-	if (preg_match('/[0-9]/', $prenom, $matches)){
+	else if (preg_match('/[0-9]/', $prenom, $matches)){
 	  	echo "Le prénom contient des chiffres <br>";
 	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			$AllAnswersOk = false;
 	}
 
 	/*On vérifie que le nom et le prénom ne sont pas seulement un ou des espaces*/
-	if ((trim($nom, ' ')) == ''){
+	else if ((trim($nom, ' ')) == ''){
 	 	 echo "Vous n'avez rentré que des espaces pour le nom <br>";
 		 echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 		 $AllAnswersOk = false;
 	}
 
-	if ((trim($prenom, ' ')) == ''){
+	else if ((trim($prenom, ' ')) == ''){
 	  	echo "Vous n'avez rentré que des espaces pour le prénom <br>";
 	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			$AllAnswersOk = false;
@@ -68,7 +68,7 @@
 	
 	/*Si $AllAnswersOk -> Tous les filtres du formulaire sont favorables*/
 
-	if($AllAnswersOk){
+	else if($AllAnswersOk){
 
 			include "connect.php";//Fichier de connection à la BD
 
