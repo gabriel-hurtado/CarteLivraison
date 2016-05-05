@@ -19,7 +19,6 @@
 		  	$etage = $_POST['etage'];
 		  	$digicode = $_POST['digicode'];
 			/*---------------------------------------*/
-			echo "$nomrue";
 			/*Pattern = PAS DE CARACTERES SPECIAUX DANS LE NOM & PRENOM*/
 			$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
 

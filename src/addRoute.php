@@ -31,7 +31,7 @@
 			  	$vConnect = fConnect(); 
 				$vSql ="INSERT INTO proRoute(route_nom, type, accessibilite) VALUES ('$nom', '$typerue', '$access')";
 				$vResult =pg_query($vConnect, $vSql);
-				echo "la jonction a bien été ajoutée !";
+				echo "la route a bien été ajoutée ! <a href='addJonction.php'>Raccordez la à la carte grâce à une jonction </a>";
 				echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			}
 	/*---------------*/
