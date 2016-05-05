@@ -1,3 +1,0 @@
-<?php
-//Modif clients
- ?>
