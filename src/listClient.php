@@ -31,7 +31,7 @@
             		$c_row = current($row);//On recupère la première valeur
 
                 if($y == 0){
-                  echo'<td><a href="#">'.$c_row.'</a></td>';
+                  echo'<td><a href="modifClientForm.php?id='.$c_row.'">'.$c_row.'</a></td>';
                 }else{
                   echo '<td>' . $c_row . '</td>';//On affiche la valeur
                 }

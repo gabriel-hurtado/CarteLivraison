@@ -24,7 +24,7 @@
     <tr>
     <?php
       include "connect.php";
-      $vConnect = fConnect(); 
+      $vConnect = fConnect();
       $vQuery = "SELECT * FROM proRoute ORDER BY route_nom";
       $vResult=pg_query($vConnect, $vQuery);
       echo "<TR>";
