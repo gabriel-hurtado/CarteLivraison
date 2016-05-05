@@ -5,8 +5,6 @@
 
   $vSql ="SELECT * from proClients";
   $result =pg_query($vConnect, $vSql);
-  $client_list = pg_fetch_array($result);
-
   $nbr_lignes = pg_num_rows($result);
 
  ?>
@@ -20,16 +18,25 @@
 
       <table border="1">
         <tr>
-          <td><strong>ID</strong></td><td><strong>PRENOM</strong></td><td><strong>NOM</strong></td>
+          <td><strong>ID</strong></td><td><strong>PRENOM</strong></td><td><strong>NOM</strong></td><td><strong>NUMERO</strong></td><td><strong>MAIL</strong></td><td><strong>ID</strong></td>
         </tr>
        <?php
-       for($i=1;$i<=$nbr_lignes;$i++){
-         echo '<tr>';
-          echo '<td>'.$client_list[0].'</td>';
-          echo '<td>'.$client_list[1].'</td>';
-          echo '<td>'.$client_list[2].'</td>';
-         echo '</tr>';
-       }
+        while ($row = pg_fetch_row($result))
+        {
+	         echo '<tr>';
+	          $count = count($row);
+	           $y = 0;
+            	while ($y < $count)
+            	{
+            		$c_row = current($row);
+            		echo '<td>' . $c_row . '</td>';
+            		next($row);
+            		$y = $y + 1;
+            	}
+            	echo '</tr>';
+            	$i = $i + 1;
+            }
+            pg_free_result($result);
        ?>
     </table>
 
