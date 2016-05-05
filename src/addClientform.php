@@ -37,7 +37,7 @@
       pg_close($vConnect);
     ?>
     <tr>
-      <td>N° rue :</td><td><input type="text" name="numero" maxlength="4">*</td><br>
+      <td>N° rue :</td><td><input type="text" name="numero" maxlength="4" required>*</td><br>
     </tr>
     <tr>
       <td>Bâtiment :</td><td><input type="text" name="batiment" maxlength="25"></td><br>
