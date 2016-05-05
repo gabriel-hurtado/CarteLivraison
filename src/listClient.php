@@ -18,7 +18,7 @@
 
       <table border="1">
         <tr>
-          <td><strong>ID</strong></td><td><strong>PRENOM</strong></td><td><strong>NOM</strong></td><td><strong>NUMERO</strong></td><td><strong>MAIL</strong></td><td><strong>ID</strong></td>
+          <td><strong>ID</strong></td><td><strong>PRENOM</strong></td><td><strong>NOM</strong></td><td><strong>NUMERO</strong></td><td><strong>MAIL</strong></td>
         </tr>
        <?php
         while ($row = pg_fetch_row($result))
@@ -26,7 +26,7 @@
 	         echo '<tr>';
 	          $count = count($row);
 	           $y = 0;
-            	while ($y < $count)
+            	while ($y < $count-1)
             	{
             		$c_row = current($row);
             		echo '<td>' . $c_row . '</td>';
@@ -34,7 +34,6 @@
             		$y = $y + 1;
             	}
             	echo '</tr>';
-            	$i = $i + 1;
             }
             pg_free_result($result);
        ?>
