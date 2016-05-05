@@ -5,10 +5,9 @@ _TODO:_
 * Créer les tables
 	* ~~Client~~
 	* ~~Disponibilité~~
-	* Demande
 	* ~~Adresse~~
 	* ~~Commande~~
-	*~~Marchandise~~
+	* ~~Marchandise~~
 	* ~~MarchandiseCommande~~
 	* ~~Route~~
 	* ~~Jonction~~
@@ -33,16 +32,19 @@ _TODO:_
 
     * En cas de réapprovisionnement, les données sur les marchandises doivent être mise à jour
 
-    * Pouvoir ajouter de nouveaux clients
+    ~~* Pouvoir ajouter de nouveaux clients~~
 
-    * Pouvoir mettre à jour les informations d'accessibilité des routes
+    ~~* Pouvoir mettre à jour les informations d'accessibilité des routes~~
 
 * Interface WEB :
 
-Fenêtre découpée en 2 frames :
-* Frame 1 : Main content à droite (80%)
-* Frame 2 : Menu à gauche (20%) 
-	* Gestion des clients (Tout les clients, add/supp clients, clients en attente, etc...
-	* Gestion des marchandises (Toutes les marchandises, rupture de stock, Réapprovisionnement ...)
-	* Gestion des commandes
+~~Fenêtre découpée en 2 frames :~~
+~~* Frame 1 : Main content à droite (80%)~~
+~~* Frame 2 : Menu à gauche (20%) ~~
+	~~* Gestion des clients (Tout les clients, add/supp clients, clients en attente, etc...~~
+	~~* Gestion des marchandises (Toutes les marchandises, rupture de stock, Réapprovisionnement ...)~~
+	~~* Gestion des commandes~~
+
+* Nouveau client : implémenter les disponibilités à l'inscription
+* Liste clients : afficher un bouton "Fiche client" pour chaque client allant sur une page récapitulant : nom prenom, tel, adresse, email, et liste des commandes déjà passées et leur contenu.
 
