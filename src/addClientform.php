@@ -22,20 +22,22 @@
       <td>Téléphone :</td><td><input type="text" name="telephone" length="10"></td><br>
     </tr>
     <tr>
-      <td></td><td><select name="typerue" id="typerue">  <option value="">-</option>
-					<option value="RUE">RUE</option>
-					<option value="ROUTE">ROUTE</option>
-					<option value="AVENUE">AVENUE</option>
-					<option value="IMPASSE">IMPASSE</option>
-					<option value="BOULEVARD">BOULEVARD</option>
-        	<option value="CHEMIN">CHEMIN</option>
-        	<option value="RUELLE">RUELLE</option>*</td><br>
-    </tr>
+    <?php
+      include "connect.php";
+      $vConnect = fConnect(); 
+      $vQuery = "SELECT * FROM proRoute ORDER BY route_nom";
+      $vResult=pg_query($vConnect, $vQuery);
+      echo "<TR>";
+      echo "<TD>Adresse:</TD><TD><select name='nomrue'>";
+      while ($row = pg_fetch_array($vResult)){
+        echo "<option value='$row[0]'> $row[1] $row[0] </option>";
+      }
+      echo "</select></TD>";
+      echo "</TR>";
+      pg_close($vConnect);
+    ?>
     <tr>
-      <td>Nom rue :</td><td><input type="text" name="nomrue" maxlength="50">*</td><br>
-    </tr>
-    <tr>
-      <td>Numéro :</td><td><input type="text" name="numero" maxlength="4">*</td><br>
+      <td>N° rue :</td><td><input type="text" name="numero" maxlength="4">*</td><br>
     </tr>
     <tr>
       <td>Bâtiment :</td><td><input type="text" name="batiment" maxlength="25"></td><br>

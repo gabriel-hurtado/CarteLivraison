@@ -15,11 +15,11 @@
 			$typerue= $_POST["typerue"];
 			$nomrue = $_POST['nomrue'];
 			$numero = $_POST['numero'];
-	  	$batiment = $_POST['batiment'];
-	  	$etage = $_POST['etage'];
-	  	$digicode = $_POST['digicode'];
+		  	$batiment = $_POST['batiment'];
+		  	$etage = $_POST['etage'];
+		  	$digicode = $_POST['digicode'];
 			/*---------------------------------------*/
-
+			echo "$nomrue";
 			/*Pattern = PAS DE CARACTERES SPECIAUX DANS LE NOM & PRENOM*/
 			$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
 
@@ -83,19 +83,8 @@
 			}
 			else{
 
-				$vConnect = fConnect();// ? Pourquoi se connecter une 2eme fois ?
-
 				echo "Vous êtes $nom "."$prenom, habitant le $numero $typerue $nomrue";
 
-				/*Ajout de la route si nouvelle*/
-		   	$vSqlCheck = "SELECT * FROM proRoute WHERE route_nom = '$nomrue'";
-				$result = pg_query($vConnect, $vSqlCheck);
-
-				if(pg_num_rows($result) == 0){
-					$vSql1 = "INSERT INTO proRoute(route_nom, type, accessibilite) VALUES ('$nomrue', '$typerue', 'TRAFFIC NORMAL')";
-					$vResult1 = pg_query($vConnect, $vSql1);
-				}
-				/*-----------------------------*/
 
 		    /*Ajout de l'adresse si nouvelle*/
 		    $vSqlCheck= "SELECT * FROM proAdresse WHERE numero_rue='$numero' AND route_nom='$nomrue' AND batiment ='$batiment' AND etage = '$etage' AND digicode='$digicode'";
