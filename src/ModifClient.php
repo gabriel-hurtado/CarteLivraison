@@ -59,7 +59,6 @@ if(isset($_POST['go']) && $_POST['go']=="Modifier")
 
       $vConnect = fConnect();
       $query = "UPDATE proClients SET prenom='$prenom', nom='$nom', telephone='$telephone', email='$email' WHERE numero_client='$id'";
-      echo $query;
 
       $result =pg_query($vConnect, $query);
 
