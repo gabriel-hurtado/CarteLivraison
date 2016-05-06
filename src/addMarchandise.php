@@ -87,10 +87,6 @@ if ($date == '1970-01-01' || $today < $date){
 		echo "la marchandise a bien été ajouté !";
 		pg_close($vConnect);
 }
- function validateDate($date)
-{
-    return preg_match("/^[0-9]{4}-(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])$/",$date);
-}
 
 echo "</div>";
 ?>
