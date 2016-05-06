@@ -17,6 +17,7 @@ $nbr_lignes = pg_num_rows($vResult);
 date_default_timezone_set('Europe/Paris');
 $today = date("d/m/Y");
 echo "Voici la liste des produits indisponibles à ce jour ( $today ) <br><br> En <font color='red'> rouge</font> sont affichés les produits dont la date de réapprovisionnement est dépassée (retard) <br><br>";
+$today = date("Ymd");
 $today = new DateTime( $today );
 $today = $today->format("Ymd");
 
