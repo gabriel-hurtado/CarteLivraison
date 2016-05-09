@@ -46,9 +46,9 @@ CREATE TABLE proClients(
 
 CREATE TABLE proDisponibilite(
 	debut TIMESTAMP,
-	dureeH DECIMAL(2,2),
+	fin TIMESTAMP,
 	client INTEGER REFERENCES proClients(numero_client),
-	PRIMARY KEY (debut, dureeH, client)
+	PRIMARY KEY (debut, fin, client)
 );
 
 CREATE TABLE proMarchandise(
