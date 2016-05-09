@@ -7,6 +7,7 @@
 <body>
 
 <?php
+			date_default_timezone_set('Europe/Paris');
 			/*Récupération des variables du formualaire*/
 			$nom = $_POST['nom'];
 			$prenom= $_POST["prenom"];
@@ -18,6 +19,11 @@
 		  	$batiment = $_POST['batiment'];
 		  	$etage = $_POST['etage'];
 		  	$digicode = $_POST['digicode'];
+
+		  	$debut = $_POST['debut'];
+		  	$fin = $_POST['fin'];
+		  	$h1=strtotime($debut);
+			$h2=strtotime($fin);
 			/*---------------------------------------*/
 			/*Pattern = PAS DE CARACTERES SPECIAUX DANS LE NOM & PRENOM*/
 			$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
@@ -64,6 +70,11 @@
 	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			$AllAnswersOk = false;
 	}
+	else if ($h2-$h1 <= 0){
+	  	echo "Les horaires de livraisons sont invalides <br>";
+	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
+			$AllAnswersOk = false;
+	}
 	
 	/*Si $AllAnswersOk -> Tous les filtres du formulaire sont favorables*/
 
@@ -103,8 +114,16 @@
 
 		    /*Ajout du client*/
 		    $vSql3 = "INSERT INTO proClients(numero_client, prenom, nom, telephone, email, adresse) VALUES (DEFAULT, '$prenom', '$nom', '$telephone', '$email', '$adresse[0]')";
-				$vResult3 = pg_query($vConnect, $vSql3);
-				echo "le client a bien été ajouté !";
+			$vResult3 = pg_query($vConnect, $vSql3);
+			
+			/*recuperation de l'id du client pour ajout des disponibilités*/
+			$vSql= "SELECT numero_client FROM proClients WHERE email = '$email'";
+			$idClient = pg_query($vConnect, $vSql);
+		    $idclient = pg_fetch_array($idClient);
+
+		    $vSql = "INSERT INTO proDisponibilite(debut, fin, client) VALUES ('$debut', '$fin', $idclient[0])";
+		    $vResult = pg_query($vConnect, $vSql);
+			echo " <br>le client a bien été ajouté !";
 				/*---------------*/
 
 				pg_close($vConnect);

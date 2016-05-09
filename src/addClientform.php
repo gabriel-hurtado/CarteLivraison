@@ -48,6 +48,43 @@
     <tr>
       <td>Digicode :</td><td><input type="text" name="digicode" maxlength="15"></td><br>
     </tr>
+    <tr>
+      <td>Heure de livraison :</td><td><select name='debut'>
+        <option value='08:00'> 08:00</option>
+        <option value='09:00'> 09:00</option>
+        <option value='10:00'> 10:00</option>
+        <option value='11:00'> 11:00</option>
+        <option value='12:00'> 12:00</option>
+        <option value='13:00'> 13:00</option>
+        <option value='14:00'> 14:00</option>
+        <option value='15:00'> 15:00</option>
+        <option value='16:00'> 16:00</option>
+        <option value='17:00'> 17:00</option>
+        <option value='18:00'> 18:00</option>
+        <option value='19:00'> 19:00</option>
+        <option value='20:00'> 20:00</option>
+        <option value='21:00'> 21:00</option>
+        <option value='22:00'> 22:00</option>
+      </select>
+        à
+        <select name='fin'>
+        <option value='08:00'> 08:00</option>
+        <option value='09:00'> 09:00</option>
+        <option value='10:00'> 10:00</option>
+        <option value='11:00'> 11:00</option>
+        <option value='12:00'> 12:00</option>
+        <option value='13:00'> 13:00</option>
+        <option value='14:00'> 14:00</option>
+        <option value='15:00'> 15:00</option>
+        <option value='16:00'> 16:00</option>
+        <option value='17:00'> 17:00</option>
+        <option value='18:00'> 18:00</option>
+        <option value='19:00'> 19:00</option>
+        <option value='20:00'> 20:00</option>
+        <option value='21:00'> 21:00</option>
+        <option value='22:00'> 22:00</option>
+      </td><br>
+    </tr>
 	</table>
 
 	<br>
