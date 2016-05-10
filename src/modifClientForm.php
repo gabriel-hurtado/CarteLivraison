@@ -10,12 +10,13 @@ if(isset($_GET['id'])){
   include('connect.php');
   $vConnect = fConnect();
 
-  $vSql ="SELECT prenom, nom, telephone, email from proClients WHERE numero_client=".$id;
-  //$querySQL2 = "SELECT numero_de_rue, route_nom, batiment, etage, digicode from Client, Adresse WHERE numero_client = ".$id." and Client.route=Adresse.route_nom and Client.numero=Adresse.numero_de_rue ";
+
+  $vSql = "SELECT numero_rue, route_nom, batiment, etage, digicode, id from proClients, proAdresse WHERE numero_client = ".$id." and proClients.adresse=proAdresse.id";
 
   $result =pg_query($vConnect, $vSql);
 
-  $datas_client = pg_fetch_array($result);
+  $datas_client = pg_fetch_row($result);
+
 
 }
 else{
@@ -39,16 +40,38 @@ else{
     <div align="center">
       <table>
         <tr>
-          <td>Nom :</td><td><input type="text" name="nom" maxlength="25" value=<?php echo $datas_client[1]; ?> required> *</td><br>
+          <?php $c_row = current($datas_client) ; next($datas_client); next($datas_client);?>
+          <td>Numéro de rue :</td><td><input type="text" name="num_rue" maxlength="25" value=<?php echo $c_row; ?> required> *</td><br>
+        </tr>
+        <?php
+          $vQuery = "SELECT * FROM proRoute ORDER BY route_nom";
+          $vResult=pg_query($vConnect, $vQuery);
+          echo "<TR>";
+          echo "<TD>Adresse:</TD><TD><select name='nomrue'>";
+          while ($row = pg_fetch_array($vResult)){
+            echo "<option value='$row[0]'> $row[1] $row[0] </option>";
+          }
+          echo "</select></TD>";
+          echo "</TR>";
+          pg_close($vConnect);
+        ?>
+        <tr>
+          <?php $c_row = current($datas_client) ; next($datas_client); ?>
+          <td>Batiment :</td><td><input type="text" name="batiment" maxlength="50" value=<?php echo $c_row; ?>> </td><br>
         </tr>
         <tr>
-    			<td>Prénom :</td><td><input type="text" name="prenom" maxlength="25" value=<?php echo $datas_client[0]; ?> required> *</td><br>
-    		</tr>
-        <tr>
-          <td>E-mail :</td><td><input type="text" name="email" maxlength="50" value=<?php echo $datas_client[3]; ?> required> *</td><br>
+          <?php $c_row = current($datas_client) ; next($datas_client); ?>
+          <td>Etage :</td><td><input type="text" name="etage" length="10" value=<?php echo $c_row; ?> > </td><br>
         </tr>
         <tr>
-          <td>Téléphone :</td><td><input type="text" name="telephone" length="10" value=<?php echo $datas_client[2]; ?>></td><br>
+          <?php $c_row = current($datas_client) ; next($datas_client); ?>
+          <td>Digicode :</td><td><input type="text" name="digicode" length="10" value=<?php echo $c_row; ?>> </td><br>
+
+          <?php
+            $c_row = current($datas_client) ;
+            $_SESSION['id_adresse'] = $c_row;
+          ?>
+          
         </tr>
       </table>
 
@@ -58,33 +81,6 @@ else{
         <input name="go" type="submit" value="Modifier">
     </div>
   </form>
-
-  <!--form method="POST" action="ModifClient.php">
-    <div align="center">
-      <table>
-        <tr>
-          <td>Numéro de rue :</td><td><input type="text" name="num_rue" maxlength="25" value=<?php echo $datas_client[1]; ?> required> *</td><br>
-        </tr>
-        <tr>
-          <td>Route :</td><td><input type="text" name="route" maxlength="25" value=<?php echo $datas_client[0]; ?> required> *</td><br>
-        </tr>
-        <tr>
-          <td>Batiment :</td><td><input type="text" name="batiment" maxlength="50" value=<?php echo $datas_client[2]; ?> required> *</td><br>
-        </tr>
-        <tr>
-          <td>Etage :</td><td><input type="text" name="etage" length="10" value=<?php echo $datas_client[3];?> required> *</td><br>
-        </tr>
-        <tr>
-          <td>Digicode :</td><td><input type="text" name="digicode" length="10" value=<?php echo $datas_client[4];?> required> *</td><br>
-        </tr>
-      </table>
-
-      <br>
-      <br>
-      <br>
-        <input name="go" type="submit" value="Modifier">
-    </div>
-  </form-->
 
 </body>
 </html
