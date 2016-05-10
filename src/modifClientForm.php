@@ -33,7 +33,7 @@ else{
   <h1>Modification client numéro <?php echo $id; ?></h1>
   <hr>
   <br>
-  <a href="#" target="_blank"><input type="button" value="COMMANDES CLIENTS"></a>
+  <a href="#"><input type="button" value="COMMANDES CLIENT"></a>
   <br>
 
   <form method="POST" action="ModifClient.php">
@@ -71,7 +71,7 @@ else{
             $c_row = current($datas_client) ;
             $_SESSION['id_adresse'] = $c_row;
           ?>
-          
+
         </tr>
       </table>
 
