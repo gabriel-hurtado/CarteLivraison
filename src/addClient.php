@@ -75,7 +75,7 @@
 	  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			$AllAnswersOk = false;
 	}
-	
+
 	/*Si $AllAnswersOk -> Tous les filtres du formulaire sont favorables*/
 
 	else if($AllAnswersOk){
@@ -115,7 +115,7 @@
 		    /*Ajout du client*/
 		    $vSql3 = "INSERT INTO proClients(numero_client, prenom, nom, telephone, email, adresse) VALUES (DEFAULT, '$prenom', '$nom', '$telephone', '$email', '$adresse[0]')";
 			$vResult3 = pg_query($vConnect, $vSql3);
-			
+
 			/*recuperation de l'id du client pour ajout des disponibilités*/
 			$vSql= "SELECT numero_client FROM proClients WHERE email = '$email'";
 			$idClient = pg_query($vConnect, $vSql);
