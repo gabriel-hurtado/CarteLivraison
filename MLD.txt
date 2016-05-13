@@ -43,7 +43,8 @@ Marchandise(	#numero_id : int,
 avec denomination, prix, stock NOT NULL
 
 Marchandise_Commande(	#numero_id->Marchandise,
-				#commande_id->Commande)
+				#commande_id->Commande
+				quantite : int)
 
 Route( 		#nom : string,
 		type : string,

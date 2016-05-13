@@ -4,7 +4,7 @@
 </head>
 
 <body>
-	<form method="POST" action="addCommandes.php">
+	<form method="POST" action="addCommandeIntermediaire.php">
 
 	<h2>Ajout d'un client</h2>
 	<div align="center">
@@ -26,11 +26,11 @@
       $vQuery = "SELECT id, denomination, stock FROM proMarchandise WHERE stock>0 ORDER BY denomination";
       $vResult=pg_query($vConnect, $vQuery);
       echo "<TR>";
-      echo "<TD>Produit :</TD><TD><select name='id_produit'>";
+      echo "<TD>Produits :</TD><TR>";
       while ($row = pg_fetch_array($vResult)){
-        echo "<option value='$row[0]'> $row[1] Stock: $row[2]</option>";
+        echo "<TR><TD></TD><TD> $row[1] </TD><TD> Stock: $row[2]</TD><TD><INPUT type='checkbox' name='products[]' value='$row[0]'></TD></TR>";
       }
-      echo "</select></TD>";
+      echo "</TR>";
       echo "</TR>";
       pg_close($vConnect);
     ?>

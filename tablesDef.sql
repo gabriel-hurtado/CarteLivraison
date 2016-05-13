@@ -73,5 +73,6 @@ CREATE TABLE proCommande(
 CREATE TABLE proMarchandiseCommande(
 	numero_id INTEGER REFERENCES proMarchandise(id),
 	commande_id INTEGER REFERENCES proCommande(id),
+	quantite INTEGER,
 	PRIMARY KEY (numero_id, commande_id)
 );

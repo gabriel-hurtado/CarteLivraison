@@ -11,12 +11,25 @@
 echo "<h2>Ajout d'une commande'</h2>";
 echo "<div align=center>";
 
-	$id_produit = $_POST['id_produit'];
+	$id_produit = $_POST['products'];
+	$quantite = $_POST['quantite'];
+	$stock = $_POST['stock'];
 	$numero_cl= $_POST["numero_cl"];
 	$jour= $_POST["jour"];
 	$mois= $_POST["mois"];
 	$annee= $_POST["annee"];
 	$pattern = '/[][(){}<>\/+²"*%&=?`"\'^\!$_:;,]/';
+
+$i=0;
+$flag=TRUE;
+foreach ($quantite as $qt) {
+			if($qt>$stock[$i]){
+			if($flag)
+			echo "La quantité dépasse le stock ...<br>";
+		  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
+		  	$flag=FALSE;
+			}
+		}
 
 
 
@@ -55,8 +68,9 @@ if ($date == '1970-01-01' || $today <= $date){
 	$vConnect = fConnect();
     //Ajout de la Marchandise
    // $vSql3 = "INSERT INTO proCommande(id, livree, date_livraison, date_commande, enquete_satisfaction_envoyee, reponse_enquete_satisfaction, numero_client) VALUES (DEFAULT, 'FALSE', '$date', '$today', 'FALSE', NULL, '$numero_cl')";
-		$vResult3 = pg_query($vConnect, $vSql3);
-		echo "la marchandise a bien été ajoutée, il faudrait faire pareil avec les produits !";
+	//	$vResult3 = pg_query($vConnect, $vSql3);
+		//echo "la marchandise a bien été ajoutée, il faudrait faire pareil avec les produits !";
+		
 		pg_close($vConnect);
 }
 
