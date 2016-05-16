@@ -1,7 +1,8 @@
 -- Requetes de creation de tables
 -- ATTENTION: METTRE "pro" EN PREFIXE DE TABLE POUR SAVOIR QUE C EST UNE TABLE DE PROJET
 -- Exemple :
-
+-- SE CONNECTER:
+--	psql -h tuxa.sme.utc -d dbnf17p072 -U nf17p072
 -- LISTER LES TABLES :
 -- select * from pg_tables where tablename not like 'pg_%' AND tableowner='nf17p072';
 

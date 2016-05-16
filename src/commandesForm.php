@@ -34,9 +34,9 @@
       echo "</TR>";
       pg_close($vConnect);
     ?>
+</tr>
 
-
-    <tr>
+   <tr>
       <td>Date de livraison :</td><td><select name="jour" id="jour">  <option value="">Jour</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -90,9 +90,8 @@
 				<option value="2019">2019</option>
 				<option value="2018">2018</option>
 				<option value="2017">2017</option>
-				<option value="2016">2016</option><br>
+				<option value="2016">2016</option>
     </tr>
-    
     
 	</table>
 
