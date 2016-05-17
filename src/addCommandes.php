@@ -48,10 +48,10 @@ if (empty($jour) or empty($mois) or empty($annee)) {
 		// on formate les dates selon le format Ymd
 		$today = new DateTime( $today );
 		$today = $today->format("Ymd");
-	
+
 	if($date != '1970-01-01'){
 		/* Date du jour */
-		
+
 		$date = new DateTime( $date );
 		$date = $date->format("Ymd");
 		/* On vérifie que la date de la séance est valide*/
@@ -60,7 +60,7 @@ if (empty($jour) or empty($mois) or empty($annee)) {
 				echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 			}
 		else if( $today > $date ) {
-			echo "Le délai de réapprovisionnement ne peut etre dans le passé...<br>";
+			echo "La date de livraison ne peut etre dans le passé...<br>";
 		  	echo "<input type='button' value='Retour' onClick='history.go(-1)'>";
 		}
 	}
@@ -75,7 +75,7 @@ if ($date == '1970-01-01' || $today < $date){
     //Ajout de la Commande
     $vSql3 = "INSERT INTO proCommande(id, livree, date_livraison, date_commande, enquete_satisfaction_envoyee, reponse_enquete_satisfaction, numero_client) VALUES (DEFAULT, 'FALSE', '$date', '$today', 'FALSE', NULL, '$numero_cl') RETURNING id";
 	$vResult3 = pg_query($vConnect, $vSql3);
-	$row = pg_fetch_row($vResult3); 
+	$row = pg_fetch_row($vResult3);
 	$id = $row['0'];
 	$i=0;
 	foreach ($quantite as $qt) {
@@ -83,7 +83,7 @@ if ($date == '1970-01-01' || $today < $date){
 		$vResult = pg_query($vConnect, $vSql3);
 		$i++;
 		}
-		
+
 	pg_close($vConnect);
 	echo " Commande enregistrée !";
 }

@@ -13,7 +13,7 @@ _TODO:_
 	* ~~Jonction~~
 	* ~~JontionRoutes~~
 
-* Traduire en requete SQL : 
+* Traduire en requete SQL :
     * Quels sont les clients en attente de livraison ?
 
     * Quels sont les routes avec beaucoup de clients en attente ?
@@ -22,7 +22,7 @@ _TODO:_
 
     * Un livreur est actuellement à une jonction, quels sont les clients pouvant être livrés depuis cette dernière ?
 
-    * Quelles sont les marchandises en rupture de stock ?
+    * ~~Quelles sont les marchandises en rupture de stock ?~~
 
     * __Exemples de mises à jour à prendre en compte__ :
 
@@ -45,6 +45,12 @@ _TODO:_
 	* ~~Gestion des marchandises (Toutes les marchandises, rupture de stock, Réapprovisionnement ...)~~
 	* ~~Gestion des commandes~~
 
-* Nouveau client : implémenter les disponibilités à l'inscription
+* ~~Nouveau client : implémenter les disponibilités à l'inscription~~
 * Liste clients : afficher un bouton "Fiche client" pour chaque client allant sur une page récapitulant : nom prenom, tel, adresse, email, et liste des commandes déjà passées et leur contenu.
 
+4 Vues
+4 Insertions : Nouveau client / Nouveau produit / Nouvelle Commande / Nouvelle route / Nouvelle Jonction
+4 Suppressions
+4 Update : Modifier client / Modifier accessibilité / Reapprovisionnement
+4 Recherche Liste Client / Liste des produits / Rupture de stock / Livraison proche d'une jonction / Repartition des commandes / Clients en attente
+4 Agregats
