@@ -1,0 +1,9 @@
+{
+    "type": "sftp",
+    "host": "tuxa.sme.utc",
+    "username": "nf17p072",
+    "password": "IXHzqu2x",
+    "port": 22,
+    "remotePath": "/volsme/user1x/users/nf17p072/public_html/projet/src",
+    "uploadOnSave": true
+}

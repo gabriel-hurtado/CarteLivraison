@@ -4,7 +4,7 @@
   $vConnect = fConnect();
 
   $vSql ="SELECT cl.nom, cl.prenom, c.date_livraison, c.id from proCommande c, proClients cl WHERE c.numero_client = cl.numero_client ORDER BY cl.nom";
-  $result =pg_query($vConnect, $vSql);
+  $result = pg_query($vConnect, $vSql);
 
   date_default_timezone_set('Europe/Paris');
  ?>
@@ -24,10 +24,10 @@
        <?php
         while ($row = pg_fetch_row($result))
         {
-          $date = $row[2];
+        $date = $row[2];
         $date= new DateTime($date);
       	$date=$date->format("d/m/Y");
-          echo "<tr><td>$row[0]</td><td> $row[1]</td><td> $date</td><td><input type='radio' name='choixCommande' value ='$row[3]'></td></tr>";
+          echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$date.'</td><td><a href="detailCommande.php?id='.$row[3].'">Details</a></td></tr>';
         }
        ?>
     </table>
