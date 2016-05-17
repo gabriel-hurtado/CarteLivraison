@@ -3,7 +3,7 @@
 
   $vConnect = fConnect();
 
-  $vSql ="SELECT * from proClients";
+  $vSql ="SELECT cl.numero_client, cl.prenom, cl.nom, cl.telephone, cl.email, COUNT(c.id) from proClients cl LEFT JOIN proCommande c ON c.numero_client = cl.numero_client GROUP BY cl.numero_client ORDER BY cl.nom;";
   $result =pg_query($vConnect, $vSql);
   $nbr_lignes = pg_num_rows($result);
 
@@ -19,7 +19,7 @@
       <br>
       <table align="center" border="1">
         <tr>
-          <td><strong>ID</strong></td><td><strong>PRENOM</strong></td><td><strong>NOM</strong></td><td><strong>NUMERO</strong></td><td><strong>MAIL</strong></td>
+          <td><strong>ID</strong></td><td><strong>PRENOM</strong></td><td><strong>NOM</strong></td><td><strong>NUMERO</strong></td><td><strong>MAIL</strong></td><td><strong>NB COMMANDES</strong></td>
         </tr>
        <?php
         while ($row = pg_fetch_row($result))//Parcourir toutes les lignes -> Tant que $row != NULL
@@ -27,7 +27,7 @@
 	         echo '<tr>';
 	          $count = count($row);//On compte combien de valeurs
 	           $y = 0;
-            	while ($y < $count-1)
+            	while ($y < $count)
             	{
             		$c_row = current($row);//On recupère la première valeur
 
