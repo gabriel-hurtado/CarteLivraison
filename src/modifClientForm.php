@@ -61,6 +61,7 @@ else{
         ?>
         <tr>
           <?php $c_row = current($datas_client) ; next($datas_client); ?>
+          
           <td>Batiment :</td><td><input type="text" name="batiment" maxlength="50" value=<?php echo $c_row; ?>> </td><br>
         </tr>
         <tr>
