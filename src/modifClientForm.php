@@ -11,7 +11,7 @@ if(isset($_GET['id'])){
   $vConnect = fConnect();
 
 
-  $vSql = "SELECT numero_rue, route_nom, batiment, etage, digicode, id from proClients, proAdresse WHERE numero_client = ".$id." and proClients.adresse=proAdresse.id";
+  $vSql = "SELECT numero_rue, proAdresse.route_nom, type, batiment, etage, digicode, id from proClients, proAdresse, proRoute WHERE numero_client = ".$id." and proClients.adresse=proAdresse.id and proAdresse.route_nom = proRoute.route_nom";
 
   $result =pg_query($vConnect, $vSql);
 
@@ -40,14 +40,18 @@ else{
     <div align="center">
       <table>
         <tr>
-          <?php $c_row = current($datas_client) ; next($datas_client); next($datas_client);?>
+          <?php $c_row = current($datas_client) ; next($datas_client);?>
           <td>Numéro de rue :</td><td><input type="text" name="num_rue" maxlength="25" value=<?php echo $c_row; ?> required> *</td><br>
         </tr>
         <?php
           $vQuery = "SELECT * FROM proRoute ORDER BY route_nom";
           $vResult=pg_query($vConnect, $vQuery);
           echo "<TR>";
-          echo "<TD>Adresse:</TD><TD><select name='nomrue'>";
+          echo "<TD>Adresse:</TD>";
+          $c_row_route = current($datas_client) ; next($datas_client);
+          $c_row_type = current($datas_client) ; next($datas_client);
+          echo "<TD> $c_row_type $c_row_route </TD>";
+          echo "<TD><select name='nomrue'>";
           while ($row = pg_fetch_array($vResult)){
             echo "<option value='$row[0]'> $row[1] $row[0] </option>";
           }
