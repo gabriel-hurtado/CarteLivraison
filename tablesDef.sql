@@ -77,3 +77,9 @@ CREATE TABLE proMarchandiseCommande(
 	quantite INTEGER,
 	PRIMARY KEY (numero_id, commande_id)
 );
+
+CREATE VIEW ouLivrer AS 
+SELECT cl.nom, cl.prenom, c.date_livraison, c.id , a.route_nom, a.numero_rue 
+from proCommande c, proClients cl, proAdresse a 
+WHERE c.numero_client = cl.numero_client AND cl.adresse=a.id AND c.livree=FALSE 
+ORDER BY cl.nom;
