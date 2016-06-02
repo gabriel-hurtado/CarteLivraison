@@ -72,7 +72,7 @@ CREATE TABLE proCommande(
 --Projection(Commande, id) inclus ou egal a Projection(Marchandise_Commande, commande_id)
 
 CREATE TABLE proMarchandiseCommande(
-	numero_id INTEGER REFERENCES proMarchandise(id),
+	numero_id INTEGER REFERENCES proMarchandise(id) ON DELETE CASCADE,
 	commande_id INTEGER REFERENCES proCommande(id),
 	quantite INTEGER,
 	PRIMARY KEY (numero_id, commande_id)
