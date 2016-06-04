@@ -48,7 +48,7 @@ CREATE TABLE proClients(
 CREATE TABLE proDisponibilite(
 	debut TIMESTAMP,
 	fin TIMESTAMP,
-	client INTEGER REFERENCES proClients(numero_client),
+	client INTEGER REFERENCES proClients(numero_client) ON DELETE CASCADE,
 	PRIMARY KEY (debut, fin, client)
 );
 
@@ -67,13 +67,13 @@ CREATE TABLE proCommande(
 	date_commande TIMESTAMP NOT NULL,
 	enquete_satisfaction_envoyee BOOLEAN NOT NULL,
 	reponse_enquete_satisfaction VARCHAR,
-	numero_client INTEGER REFERENCES proClients(numero_client)
+	numero_client INTEGER REFERENCES proClients(numero_client) ON DELETE CASCADE
 );
 --Projection(Commande, id) inclus ou egal a Projection(Marchandise_Commande, commande_id)
 
 CREATE TABLE proMarchandiseCommande(
 	numero_id INTEGER REFERENCES proMarchandise(id) ON DELETE CASCADE,
-	commande_id INTEGER REFERENCES proCommande(id),
+	commande_id INTEGER REFERENCES proCommande(id) ON DELETE CASCADE,
 	quantite INTEGER,
 	PRIMARY KEY (numero_id, commande_id)
 );
