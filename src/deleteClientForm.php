@@ -7,6 +7,8 @@
 	<form method="POST" action="deleteClient.php">
 
 	<h2>Suppression d'un Client</h2>
+
+	ATTENTION : La suppression d'un client de la base de données entraine la suppression de toute donnée en rapport avec ce dernier (commandes, disponibilités, etc.). Soyez vigilants !
 	<div align="center">
 	<table>
     <tr>
@@ -22,13 +24,13 @@
       echo "</select></TD>";
       echo "</TR>";
 
-      
+
       pg_close($vConnect);
     ?>
 </tr>
 
-   
-    
+
+
 	</table>
 
 	<br>
