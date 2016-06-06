@@ -66,7 +66,7 @@ if (empty($jour) or empty($mois) or empty($annee)) {
 	}
 
 if ($date == '1970-01-01' || $today < $date){
-	echo "$date";
+	
 	/*Si aucune erreur, alors on peut enregistrer dans la BDD*/
 	/*Si aucune erreur, alors on peut enregistrer dans la BDD*/
 	include "connect.php";

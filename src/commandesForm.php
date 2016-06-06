@@ -6,7 +6,7 @@
 <body>
 	<form method="POST" action="addCommandeIntermediaire.php">
 
-	<h2>Ajout d'un client</h2>
+	<h2>Ajout d'une commande</h2>
 	<div align="center">
 	<table>
     <tr>
