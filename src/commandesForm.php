@@ -23,7 +23,7 @@
       echo "</select></TD>";
       echo "</TR>";
 
-      $vQuery = "SELECT id, denomination, stock FROM proMarchandise WHERE stock>0 ORDER BY denomination";
+      $vQuery = "SELECT * FROM marchandisesDisp";
       $vResult=pg_query($vConnect, $vQuery);
       echo "<TR>";
       echo "<TD>Produits :</TD><TR>";

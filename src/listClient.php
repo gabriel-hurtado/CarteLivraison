@@ -3,7 +3,7 @@
 
   $vConnect = fConnect();
 
-  $vSql ="SELECT cl.numero_client, cl.prenom, cl.nom, cl.telephone, cl.email, COUNT(c.id) from proClients cl LEFT JOIN proCommande c ON c.numero_client = cl.numero_client GROUP BY cl.numero_client ORDER BY cl.nom;";
+  $vSql ="SELECT * FROM listClients;";
   $result =pg_query($vConnect, $vSql);
   $nbr_lignes = pg_num_rows($result);
 

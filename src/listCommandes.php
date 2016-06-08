@@ -3,7 +3,7 @@
 
   $vConnect = fConnect();
 
-  $vSql ="SELECT cl.nom, cl.prenom, c.date_livraison, c.id from proCommande c, proClients cl WHERE c.numero_client = cl.numero_client ORDER BY cl.nom";
+  $vSql ="SELECT * FROM listCommandes";
   $result = pg_query($vConnect, $vSql);
 
   date_default_timezone_set('Europe/Paris');

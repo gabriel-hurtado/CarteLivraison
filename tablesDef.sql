@@ -83,3 +83,21 @@ SELECT cl.nom, cl.prenom, c.date_livraison, c.id , a.route_nom, a.numero_rue
 from proCommande c, proClients cl, proAdresse a 
 WHERE c.numero_client = cl.numero_client AND cl.adresse=a.id AND c.livree=FALSE 
 ORDER BY cl.nom;
+
+CREATE VIEW listClients AS 
+SELECT cl.numero_client, cl.prenom, cl.nom, cl.telephone, cl.email, COUNT(c.id) from proClients cl 
+LEFT JOIN proCommande c ON c.numero_client = cl.numero_client 
+GROUP BY cl.numero_client 
+ORDER BY cl.nom;
+
+CREATE VIEW listCommandes AS 
+SELECT cl.nom, cl.prenom, c.date_livraison, c.id 
+from proCommande c, proClients cl 
+WHERE c.numero_client = cl.numero_client 
+ORDER BY cl.nom;
+
+CREATE VIEW marchandisesDisp AS 
+SELECT id, denomination, stock 
+FROM proMarchandise 
+WHERE stock>0 
+ORDER BY denomination;
