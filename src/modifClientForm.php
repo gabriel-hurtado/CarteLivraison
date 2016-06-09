@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
 
   $vSql = "SELECT numero_rue, proAdresse.route_nom, type, batiment, etage, digicode, id from proClients, proAdresse, proRoute WHERE numero_client = ".$id." and proClients.adresse=proAdresse.id and proAdresse.route_nom = proRoute.route_nom";
 
-  $result =pg_query($vConnect, $vSql);
+  $result = pg_query($vConnect, $vSql);
 
   $datas_client = pg_fetch_row($result);
 
@@ -33,7 +33,7 @@ else{
   <h1>Modification client numéro <?php echo $id; ?></h1>
   <hr>
   <br>
-  <a href="#"><input type="button" value="COMMANDES CLIENT"></a>
+  <a href="listeCommandeClient.php?id=<?php echo $id ?>"><input type="button" value="COMMANDES CLIENT"></a>
   <br>
 
   <form method="POST" action="ModifClient.php">
@@ -61,7 +61,7 @@ else{
         ?>
         <tr>
           <?php $c_row = current($datas_client) ; next($datas_client); ?>
-          
+
           <td>Batiment :</td><td><input type="text" name="batiment" maxlength="50" value=<?php echo $c_row; ?>> </td><br>
         </tr>
         <tr>

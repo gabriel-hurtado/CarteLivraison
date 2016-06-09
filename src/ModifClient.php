@@ -59,7 +59,7 @@ if(isset($_POST['go']) && $_POST['go']=="Modifier")
 
       $vConnect = fConnect();
       $query = "UPDATE proAdresse a set numero_rue='$numRue', route_nom='$route', batiment='$batiment', etage='$etage', digicode='$digicode' WHERE id='$id_adresse'";
-      echo $query;
+      //echo $query;
       $result =pg_query($vConnect, $query);
 
       if($result != FALSE){
